@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import route from '../pages/route'
+import { useLocation } from 'react-router-dom'
 
 function Navbar() {
+    const location = useLocation();
+    const pathname = location.pathname;
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,7 +18,7 @@ function Navbar() {
                     <ul className="navbar-nav mr-auto">
                         {
                             route.map(({ path, name }) =>
-                                <li key={path} className="nav-item">
+                                <li key={path} className={`nav-item ${pathname === path ? 'active' : ''}`}>
                                     <Link className='nav-link' to={path} key={path}>{name}</Link>
                                 </li>
                             )
